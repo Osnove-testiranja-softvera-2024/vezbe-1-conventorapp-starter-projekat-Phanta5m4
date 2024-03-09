@@ -16,76 +16,37 @@ namespace OTS2023_ConventorApp
         {
             InitializeComponent();
         }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void rbMass_CheckedChanged_1(object sender, EventArgs e)
         {
-            lblPocetni.Text = "Pounds";
-            lblRezultat.Text = "KG";
+            lblPocetni.Text = "Pounds:";
+            lblRezultat.Text = "KG:";
+            lblPocetni.Location = new Point(58, 138);
+            lblRezultat.Location = new Point(75, 168);
         }
+
         private void rbLength_CheckedChanged(object sender, EventArgs e)
         {
-            lblPocetni.Text = "Feet";
-            lblRezultat.Text = "M";
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbPocetni_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbRezultat_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
+            lblPocetni.Text = "Feet:";
+            lblRezultat.Text = "M:";
+            lblPocetni.Location = new Point(66, 138);
+            lblRezultat.Location = new Point(80, 168);
         }
 
         private void btnKonvertuj_Click(object sender, EventArgs e)
         {
+            MassConvert massConvert = new MassConvert();
+            LenghtConvert lenghtConvert = new LenghtConvert();
+
             if (rbMass.Checked)
             {
-                tbRezultat.Text = MassConvert.ConvertMass(tbPocetni.Text);
+                tbRezultat.Text = massConvert.Convert(tbPocetni.Text);
+            }
+            else if (rbLength.Checked)
+            {
+                tbRezultat.Text = lenghtConvert.Convert(tbPocetni.Text);
             }
             else
-            {
-                tbRezultat.Text = LenghtConvert.ConvertLenght(tbPocetni.Text);
-            }
-        }
-    }
-
-    public class MassConvert
-    {
-        public static string ConvertMass(string pocetni)
-        {
-            double rez = Convert.ToDouble(Convert.ToDouble(pocetni)/2.2046);
-            return rez.ToString();
-        }
-    }
-
-    public class LenghtConvert
-    {
-        public static string ConvertLenght(string pocetni)
-        {
-            double rez = Convert.ToDouble(Convert.ToDouble(pocetni) / 2.2046);
-            return rez.ToString();
+                MessageBox.Show("Nije selektovan ni jedan konvertor", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
