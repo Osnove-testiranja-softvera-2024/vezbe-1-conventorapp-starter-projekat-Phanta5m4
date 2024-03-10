@@ -36,15 +36,24 @@
             this.rbLength = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbConverterType = new System.Windows.Forms.GroupBox();
+            this.rbMass = new System.Windows.Forms.RadioButton();
             this.lblCustomMoney = new System.Windows.Forms.Label();
             this.rbCustomMoney = new System.Windows.Forms.RadioButton();
             this.lblMoney = new System.Windows.Forms.Label();
             this.rbTime = new System.Windows.Forms.RadioButton();
             this.lblTime = new System.Windows.Forms.Label();
             this.rbMoney = new System.Windows.Forms.RadioButton();
-            this.rbMass = new System.Windows.Forms.RadioButton();
-            this.groupBox1.SuspendLayout();
+            this.gbTimeOutput = new System.Windows.Forms.GroupBox();
+            this.lblSeconds = new System.Windows.Forms.Label();
+            this.rbHours = new System.Windows.Forms.RadioButton();
+            this.rbSeconds = new System.Windows.Forms.RadioButton();
+            this.lblMinutes = new System.Windows.Forms.Label();
+            this.lblHours = new System.Windows.Forms.Label();
+            this.rbMinutes = new System.Windows.Forms.RadioButton();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.gbConverterType.SuspendLayout();
+            this.gbTimeOutput.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnKonvertuj
@@ -93,7 +102,7 @@
             // rbLength
             // 
             this.rbLength.AutoSize = true;
-            this.rbLength.Location = new System.Drawing.Point(23, 51);
+            this.rbLength.Location = new System.Drawing.Point(23, 40);
             this.rbLength.Name = "rbLength";
             this.rbLength.Size = new System.Drawing.Size(14, 13);
             this.rbLength.TabIndex = 6;
@@ -113,35 +122,46 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(43, 51);
+            this.label4.Location = new System.Drawing.Point(43, 40);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(40, 13);
             this.label4.TabIndex = 8;
             this.label4.Text = "Length";
             // 
-            // groupBox1
+            // gbConverterType
             // 
-            this.groupBox1.Controls.Add(this.rbMass);
-            this.groupBox1.Controls.Add(this.lblCustomMoney);
-            this.groupBox1.Controls.Add(this.rbCustomMoney);
-            this.groupBox1.Controls.Add(this.lblMoney);
-            this.groupBox1.Controls.Add(this.rbTime);
-            this.groupBox1.Controls.Add(this.lblTime);
-            this.groupBox1.Controls.Add(this.rbMoney);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.rbLength);
-            this.groupBox1.Location = new System.Drawing.Point(29, 24);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(206, 89);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Converter type";
+            this.gbConverterType.Controls.Add(this.rbMass);
+            this.gbConverterType.Controls.Add(this.lblCustomMoney);
+            this.gbConverterType.Controls.Add(this.rbCustomMoney);
+            this.gbConverterType.Controls.Add(this.lblMoney);
+            this.gbConverterType.Controls.Add(this.rbTime);
+            this.gbConverterType.Controls.Add(this.lblTime);
+            this.gbConverterType.Controls.Add(this.rbMoney);
+            this.gbConverterType.Controls.Add(this.label3);
+            this.gbConverterType.Controls.Add(this.label4);
+            this.gbConverterType.Controls.Add(this.rbLength);
+            this.gbConverterType.Location = new System.Drawing.Point(29, 24);
+            this.gbConverterType.Name = "gbConverterType";
+            this.gbConverterType.Size = new System.Drawing.Size(206, 89);
+            this.gbConverterType.TabIndex = 9;
+            this.gbConverterType.TabStop = false;
+            this.gbConverterType.Text = "Converter type";
+            // 
+            // rbMass
+            // 
+            this.rbMass.AutoSize = true;
+            this.rbMass.Location = new System.Drawing.Point(23, 21);
+            this.rbMass.Name = "rbMass";
+            this.rbMass.Size = new System.Drawing.Size(14, 13);
+            this.rbMass.TabIndex = 10;
+            this.rbMass.TabStop = true;
+            this.rbMass.UseVisualStyleBackColor = true;
+            this.rbMass.CheckedChanged += new System.EventHandler(this.rbMass_CheckedChanged_1);
             // 
             // lblCustomMoney
             // 
             this.lblCustomMoney.AutoSize = true;
-            this.lblCustomMoney.Location = new System.Drawing.Point(89, 73);
+            this.lblCustomMoney.Location = new System.Drawing.Point(89, 59);
             this.lblCustomMoney.Name = "lblCustomMoney";
             this.lblCustomMoney.Size = new System.Drawing.Size(77, 13);
             this.lblCustomMoney.TabIndex = 11;
@@ -150,7 +170,7 @@
             // rbCustomMoney
             // 
             this.rbCustomMoney.AutoSize = true;
-            this.rbCustomMoney.Location = new System.Drawing.Point(69, 72);
+            this.rbCustomMoney.Location = new System.Drawing.Point(69, 59);
             this.rbCustomMoney.Name = "rbCustomMoney";
             this.rbCustomMoney.Size = new System.Drawing.Size(14, 13);
             this.rbCustomMoney.TabIndex = 13;
@@ -169,17 +189,18 @@
             // rbTime
             // 
             this.rbTime.AutoSize = true;
-            this.rbTime.Location = new System.Drawing.Point(127, 51);
+            this.rbTime.Location = new System.Drawing.Point(127, 40);
             this.rbTime.Name = "rbTime";
             this.rbTime.Size = new System.Drawing.Size(14, 13);
             this.rbTime.TabIndex = 12;
             this.rbTime.TabStop = true;
             this.rbTime.UseVisualStyleBackColor = true;
+            this.rbTime.CheckedChanged += new System.EventHandler(this.rbTime_CheckedChanged);
             // 
             // lblTime
             // 
             this.lblTime.AutoSize = true;
-            this.lblTime.Location = new System.Drawing.Point(147, 51);
+            this.lblTime.Location = new System.Drawing.Point(147, 40);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(30, 13);
             this.lblTime.TabIndex = 10;
@@ -194,24 +215,91 @@
             this.rbMoney.TabIndex = 9;
             this.rbMoney.TabStop = true;
             this.rbMoney.UseVisualStyleBackColor = true;
+            this.rbMoney.CheckedChanged += new System.EventHandler(this.rbMoney_CheckedChanged);
             // 
-            // rbMass
+            // gbTimeOutput
             // 
-            this.rbMass.AutoSize = true;
-            this.rbMass.Location = new System.Drawing.Point(23, 21);
-            this.rbMass.Name = "rbMass";
-            this.rbMass.Size = new System.Drawing.Size(14, 13);
-            this.rbMass.TabIndex = 10;
-            this.rbMass.TabStop = true;
-            this.rbMass.UseVisualStyleBackColor = true;
-            this.rbMass.CheckedChanged += new System.EventHandler(this.rbMass_CheckedChanged_1);
+            this.gbTimeOutput.Controls.Add(this.lblSeconds);
+            this.gbTimeOutput.Controls.Add(this.rbHours);
+            this.gbTimeOutput.Controls.Add(this.rbSeconds);
+            this.gbTimeOutput.Controls.Add(this.lblMinutes);
+            this.gbTimeOutput.Controls.Add(this.lblHours);
+            this.gbTimeOutput.Controls.Add(this.rbMinutes);
+            this.gbTimeOutput.Location = new System.Drawing.Point(264, 24);
+            this.gbTimeOutput.Name = "gbTimeOutput";
+            this.gbTimeOutput.Size = new System.Drawing.Size(105, 89);
+            this.gbTimeOutput.TabIndex = 10;
+            this.gbTimeOutput.TabStop = false;
+            this.gbTimeOutput.Text = "Time Output";
+            this.gbTimeOutput.Visible = false;
+            // 
+            // lblSeconds
+            // 
+            this.lblSeconds.AutoSize = true;
+            this.lblSeconds.Location = new System.Drawing.Point(43, 59);
+            this.lblSeconds.Name = "lblSeconds";
+            this.lblSeconds.Size = new System.Drawing.Size(49, 13);
+            this.lblSeconds.TabIndex = 16;
+            this.lblSeconds.Text = "Seconds";
+            // 
+            // rbHours
+            // 
+            this.rbHours.AutoSize = true;
+            this.rbHours.Location = new System.Drawing.Point(23, 21);
+            this.rbHours.Name = "rbHours";
+            this.rbHours.Size = new System.Drawing.Size(14, 13);
+            this.rbHours.TabIndex = 11;
+            this.rbHours.TabStop = true;
+            this.rbHours.UseVisualStyleBackColor = true;
+            this.rbHours.CheckedChanged += new System.EventHandler(this.rbHours_CheckedChanged);
+            // 
+            // rbSeconds
+            // 
+            this.rbSeconds.AutoSize = true;
+            this.rbSeconds.Location = new System.Drawing.Point(23, 59);
+            this.rbSeconds.Name = "rbSeconds";
+            this.rbSeconds.Size = new System.Drawing.Size(14, 13);
+            this.rbSeconds.TabIndex = 13;
+            this.rbSeconds.TabStop = true;
+            this.rbSeconds.UseVisualStyleBackColor = true;
+            this.rbSeconds.CheckedChanged += new System.EventHandler(this.rbSeconds_CheckedChanged);
+            // 
+            // lblMinutes
+            // 
+            this.lblMinutes.AutoSize = true;
+            this.lblMinutes.Location = new System.Drawing.Point(43, 40);
+            this.lblMinutes.Name = "lblMinutes";
+            this.lblMinutes.Size = new System.Drawing.Size(44, 13);
+            this.lblMinutes.TabIndex = 15;
+            this.lblMinutes.Text = "Minutes";
+            // 
+            // lblHours
+            // 
+            this.lblHours.AutoSize = true;
+            this.lblHours.Location = new System.Drawing.Point(43, 21);
+            this.lblHours.Name = "lblHours";
+            this.lblHours.Size = new System.Drawing.Size(35, 13);
+            this.lblHours.TabIndex = 14;
+            this.lblHours.Text = "Hours";
+            // 
+            // rbMinutes
+            // 
+            this.rbMinutes.AutoSize = true;
+            this.rbMinutes.Location = new System.Drawing.Point(23, 40);
+            this.rbMinutes.Name = "rbMinutes";
+            this.rbMinutes.Size = new System.Drawing.Size(14, 13);
+            this.rbMinutes.TabIndex = 12;
+            this.rbMinutes.TabStop = true;
+            this.rbMinutes.UseVisualStyleBackColor = true;
+            this.rbMinutes.CheckedChanged += new System.EventHandler(this.rbMinutes_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(503, 254);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(589, 305);
+            this.Controls.Add(this.gbTimeOutput);
+            this.Controls.Add(this.gbConverterType);
             this.Controls.Add(this.lblRezultat);
             this.Controls.Add(this.lblPocetni);
             this.Controls.Add(this.tbRezultat);
@@ -219,8 +307,10 @@
             this.Controls.Add(this.btnKonvertuj);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.gbConverterType.ResumeLayout(false);
+            this.gbConverterType.PerformLayout();
+            this.gbTimeOutput.ResumeLayout(false);
+            this.gbTimeOutput.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -236,7 +326,7 @@
         private System.Windows.Forms.RadioButton rbLength;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbConverterType;
         private System.Windows.Forms.Label lblMoney;
         private System.Windows.Forms.RadioButton rbMoney;
         private System.Windows.Forms.RadioButton rbCustomMoney;
@@ -244,6 +334,14 @@
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Label lblCustomMoney;
         private System.Windows.Forms.RadioButton rbMass;
+        private System.Windows.Forms.GroupBox gbTimeOutput;
+        private System.Windows.Forms.Label lblSeconds;
+        private System.Windows.Forms.RadioButton rbHours;
+        private System.Windows.Forms.RadioButton rbSeconds;
+        private System.Windows.Forms.Label lblMinutes;
+        private System.Windows.Forms.Label lblHours;
+        private System.Windows.Forms.RadioButton rbMinutes;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

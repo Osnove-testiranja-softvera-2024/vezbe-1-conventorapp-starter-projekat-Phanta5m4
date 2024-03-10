@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IConvert.cs" />
+    <Compile Include="Classes\IConvert.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,8 +55,11 @@
     </Compile>
     <Compile Include="Classes\LenghtConvert.cs" />
     <Compile Include="Classes\MassConvert.cs" />
+    <Compile Include="Classes\MoneyConverter.cs" />
+    <Compile Include="Interfaces\ITime.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Classes\TimeConverter.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
