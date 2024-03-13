@@ -176,6 +176,7 @@
             this.rbCustomMoney.TabIndex = 13;
             this.rbCustomMoney.TabStop = true;
             this.rbCustomMoney.UseVisualStyleBackColor = true;
+            this.rbCustomMoney.CheckedChanged += new System.EventHandler(this.rbCustomMoney_CheckedChanged);
             // 
             // lblMoney
             // 

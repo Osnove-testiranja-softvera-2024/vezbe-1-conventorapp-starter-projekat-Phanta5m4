@@ -29,7 +29,7 @@ namespace OTS2023_ConventorApp
         {
             try
             {
-                double result = Math.Round(Double.Parse(start) * 60, 3);
+                double result = Math.Round(Double.Parse(start) * 24 * 60, 3);
                 return result.ToString();
             }
             catch
@@ -43,7 +43,7 @@ namespace OTS2023_ConventorApp
         {
             try
             {
-                double result = Math.Round(Double.Parse(start) * 360, 3);
+                double result = Math.Round(Double.Parse(start) * 24 * 360, 3);
                 return result.ToString();
             }
             catch
